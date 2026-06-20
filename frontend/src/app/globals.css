@@ -1,0 +1,564 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-primary: #44ff7c;
+    --brand-primary-hover: #10f026;
+    --brand-accent: #50ff6a;
+    --brand-sidebar-bg: #282634;
+    --background: 220 14% 96%;
+    --foreground: 248 14% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 248 14% 18%;
+    --primary: 3 100% 63%;
+    --primary-foreground: 0 0% 100%;
+    --muted: 210 4% 65%;
+    --muted-foreground: 210 4% 45%;
+    --border: 12 18% 85%;
+    --input: 12 18% 85%;
+    --ring: 3 100% 63%;
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    --background: 248 14% 18%;
+    --foreground: 0 0% 98%;
+    --card: 248 12% 24%;
+    --card-foreground: 0 0% 98%;
+    --primary: 3 100% 63%;
+    --primary-foreground: 0 0% 100%;
+    --muted: 210 4% 65%;
+    --muted-foreground: 210 4% 75%;
+    --border: 248 10% 28%;
+    --input: 248 10% 28%;
+    --ring: 3 100% 63%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer components {
+  /* Superficies light: blanco puro sobre fondo gris claro (--background) */
+  .surface-card {
+    @apply rounded-xl border border-border/50 bg-white text-card-foreground shadow-sm dark:border-border/60 dark:bg-card dark:shadow-sm;
+  }
+
+  .surface-banner {
+    @apply rounded-xl border border-border/50 bg-white px-5 py-4 shadow-sm dark:border-border/60 dark:bg-transparent dark:shadow-sm;
+    background-image: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--brand-primary, #ff4e44) 10%, white),
+      white,
+      white
+    );
+  }
+
+  .dark .surface-banner {
+    @apply bg-transparent shadow-sm;
+    border-color: color-mix(in srgb, var(--brand-accent, #bd928b) 30%, transparent);
+    background-image: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--brand-accent, #bd928b) 15%, transparent),
+      transparent,
+      transparent
+    );
+  }
+
+  .surface-list {
+    @apply divide-y divide-border/40 overflow-hidden rounded-xl border border-border/60 bg-card shadow-sm;
+  }
+
+  .surface-row {
+    @apply bg-card px-4 py-4 transition-colors dark:hover:bg-white/5;
+  }
+
+  .surface-row:hover {
+    background-color: color-mix(in srgb, var(--brand-primary, #ff4e44) 5%, transparent);
+  }
+
+  .accent-value {
+    @apply font-bold text-brand-primary;
+    color: var(--brand-primary, #ff4e44);
+  }
+
+  .icon-badge {
+    @apply flex shrink-0 items-center justify-center rounded-lg;
+    background-color: color-mix(in srgb, var(--brand-primary, #ff4e44) 12%, transparent);
+  }
+
+  .stat-card {
+    @apply rounded-xl border border-border/50 bg-white p-5 text-card-foreground shadow-sm dark:border-border/60 dark:bg-card dark:shadow-sm;
+  }
+
+  .stat-card-label {
+    @apply text-sm font-medium text-muted-foreground;
+  }
+
+  .stat-card-value {
+    @apply mt-3 text-3xl font-bold tabular-nums;
+  }
+
+  .wizard-panel {
+    @apply rounded-xl border border-border/50 bg-white p-5 text-card-foreground shadow-sm dark:border-border/60 dark:bg-card dark:shadow-sm sm:p-6;
+  }
+
+  .wizard-input {
+    @apply rounded-lg border border-input bg-background text-foreground shadow-sm placeholder:text-muted-foreground focus-visible:ring-brand-primary dark:border-white/10 dark:bg-white/5 dark:placeholder:text-brand-muted;
+  }
+
+  .wizard-textarea {
+    @apply rounded-lg border border-input bg-background text-foreground shadow-sm placeholder:text-muted-foreground focus-visible:ring-brand-primary dark:border-white/10 dark:bg-transparent dark:placeholder:text-brand-muted;
+  }
+
+  .wizard-select {
+    @apply flex h-10 w-full rounded-lg border border-input bg-background px-3 text-sm text-foreground shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary dark:border-white/10 dark:bg-white/5;
+  }
+
+  .wizard-char-count {
+    @apply text-muted-foreground dark:text-brand-muted;
+  }
+
+  .wizard-chip-active {
+    @apply rounded-lg border border-brand-primary px-3 py-1.5 text-sm text-foreground transition-colors dark:text-white;
+    background-color: color-mix(in srgb, var(--brand-primary, #ff4e44) 15%, transparent);
+    border-color: var(--brand-primary, #ff4e44);
+  }
+
+  .dark .wizard-chip-active {
+    background-color: color-mix(in srgb, var(--brand-primary, #ff4e44) 20%, transparent);
+  }
+
+  .wizard-chip-inactive {
+    @apply rounded-lg border border-border px-3 py-1.5 text-sm text-muted-foreground transition-colors dark:border-white/10 dark:text-brand-muted;
+  }
+
+  .wizard-chip-inactive:hover {
+    border-color: color-mix(in srgb, var(--brand-primary-hover, #de7571) 50%, transparent);
+  }
+
+  .wizard-muted {
+    @apply text-muted-foreground dark:text-brand-muted;
+  }
+
+  .wizard-inset {
+    @apply rounded-lg border border-border/60 bg-muted/20 p-3 dark:border-white/10 dark:bg-white/5;
+  }
+
+  .wizard-stat {
+    @apply wizard-inset text-center;
+  }
+
+  /* Leaflet (CDN) — el contenedor debe tener altura explícita */
+  .church-map-host .leaflet-container {
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    z-index: 0;
+    background: #e5e7eb;
+  }
+
+  .church-map-host .leaflet-pane,
+  .church-map-host .leaflet-top,
+  .church-map-host .leaflet-bottom {
+    z-index: 1;
+  }
+
+  /* Plano del edificio — tarjetas tipo dashboard (react-grid-layout style) */
+  .building-floor-plan-canvas .gs-floor-grid {
+    background: transparent;
+    min-height: 320px;
+  }
+
+  .building-floor-plan-canvas.gs-edit-mode .gs-floor-grid {
+    min-height: 520px;
+  }
+
+  .building-floor-plan-canvas .grid-stack-item-content.gs-dash-card {
+    position: absolute;
+    inset: 4px;
+    width: auto !important;
+    height: auto !important;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    overflow: hidden;
+    background: #ffffff;
+    border: 2px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.15s ease, transform 0.15s ease, background 0.15s ease,
+      border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .building-floor-plan-canvas .gs-dash-card--colored {
+    background: var(--gs-space-accent, #2563eb);
+    border-color: var(--gs-space-accent, #2563eb);
+  }
+
+  .building-floor-plan-canvas .gs-dash-card--clickable {
+    cursor: pointer;
+  }
+
+  .building-floor-plan-canvas .gs-dash-card--clickable:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+  }
+
+  .building-floor-plan-canvas .gs-dash-card--editing {
+    cursor: grab;
+  }
+
+  .building-floor-plan-canvas .gs-dash-card--editing:active {
+    cursor: grabbing;
+  }
+
+  .building-floor-plan-canvas .gs-dash-card.gs-dash-card--busy-low {
+    box-shadow: inset 0 0 0 2px rgba(16, 185, 129, 0.35);
+  }
+
+  .building-floor-plan-canvas .gs-dash-card.gs-dash-card--busy-mid {
+    box-shadow: inset 0 0 0 2px rgba(245, 158, 11, 0.45);
+  }
+
+  .building-floor-plan-canvas .gs-dash-card.gs-dash-card--busy-high {
+    box-shadow: inset 0 0 0 2px rgba(239, 68, 68, 0.5);
+  }
+
+  .building-floor-plan-canvas .gs-dash-card__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+    text-align: center;
+    user-select: none;
+  }
+
+  .building-floor-plan-canvas .gs-dash-card__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: inherit;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+  }
+
+  .building-floor-plan-canvas .gs-dash-card__drag-hint {
+    margin-top: 0.15rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: inherit;
+    opacity: 0.9;
+  }
+
+  .building-floor-plan-canvas .gs-dash-card__label[contenteditable="true"] {
+    cursor: text;
+    min-width: 2rem;
+    padding: 0.1rem 0.25rem;
+    border-radius: 4px;
+    outline: none;
+  }
+
+  .building-floor-plan-canvas .gs-dash-card__label[contenteditable="true"]:focus {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+    color: inherit;
+  }
+
+  .building-floor-plan-canvas .gs-dash-card__color-input {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    z-index: 3;
+    width: 1.35rem;
+    height: 1.35rem;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    border-radius: 9999px;
+    padding: 0;
+    background: transparent;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    pointer-events: auto;
+  }
+
+  .building-floor-plan-canvas .gs-dash-card__occ {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #b45309;
+  }
+
+  .building-floor-plan-canvas .gs-dash-card__status {
+    font-size: 0.65rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    padding: 0.1rem 0.4rem;
+  }
+
+  .building-floor-plan-canvas .gs-dash-card__status--available {
+    background: rgba(16, 185, 129, 0.15);
+    color: rgb(5, 150, 105);
+  }
+
+  .building-floor-plan-canvas .gs-dash-card__status--maintenance {
+    background: rgba(245, 158, 11, 0.15);
+    color: rgb(180, 83, 9);
+  }
+
+  .building-floor-plan-canvas .gs-dash-card__status--blocked {
+    background: rgba(107, 114, 128, 0.2);
+    color: rgb(75, 85, 99);
+  }
+
+  .building-floor-plan-canvas .gs-dash-card__remove {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    border-radius: 4px;
+    color: hsl(0 84% 60%);
+    background: rgba(255, 255, 255, 0.9);
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 2;
+  }
+
+  .building-floor-plan-canvas .gs-dash-card:hover .gs-dash-card__remove {
+    opacity: 1;
+  }
+
+  .gs-palette-item {
+    touch-action: none;
+    user-select: none;
+  }
+
+  .gs-palette-item--placed {
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .ui-draggable-dragging.gs-palette-item {
+    z-index: 50;
+    opacity: 0.9;
+  }
+}
+
+@layer utilities {
+  .text-secondary {
+    @apply text-muted-foreground dark:text-brand-muted;
+  }
+
+  .text-brand-primary {
+    color: var(--brand-primary, #ff4e44);
+  }
+
+  .text-brand-hover {
+    color: var(--brand-primary-hover, #de7571);
+  }
+
+  .bg-brand-primary {
+    background-color: var(--brand-primary, #ff4e44);
+  }
+
+  .bg-brand-accent {
+    background-color: var(--brand-accent, #bd928b);
+  }
+
+  .bg-brand-sidebar {
+    background-color: var(--brand-sidebar-bg, #282634);
+  }
+
+  .bg-brand-dark {
+    background-color: var(--brand-sidebar-bg, #282634);
+  }
+
+  .bg-brand-primary-5 {
+    background-color: color-mix(in srgb, var(--brand-primary, #ff4e44) 5%, transparent);
+  }
+
+  .bg-brand-primary-10 {
+    background-color: color-mix(in srgb, var(--brand-primary, #ff4e44) 10%, transparent);
+  }
+
+  .bg-brand-primary-15 {
+    background-color: color-mix(in srgb, var(--brand-primary, #ff4e44) 15%, transparent);
+  }
+
+  .bg-brand-primary-20 {
+    background-color: color-mix(in srgb, var(--brand-primary, #ff4e44) 20%, transparent);
+  }
+
+  .border-brand-primary {
+    border-color: var(--brand-primary, #ff4e44);
+  }
+
+  .border-brand-primary-20 {
+    border-color: color-mix(in srgb, var(--brand-primary, #ff4e44) 20%, transparent);
+  }
+
+  .border-brand-primary-30 {
+    border-color: color-mix(in srgb, var(--brand-primary, #ff4e44) 30%, transparent);
+  }
+
+  .border-brand-primary-40 {
+    border-color: color-mix(in srgb, var(--brand-primary, #ff4e44) 40%, transparent);
+  }
+
+  .border-brand-accent-30 {
+    border-color: color-mix(in srgb, var(--brand-accent, #bd928b) 30%, transparent);
+  }
+
+  .accent-brand-primary {
+    accent-color: var(--brand-primary, #ff4e44);
+  }
+
+  .decoration-brand-hover-50 {
+    text-decoration-color: color-mix(in srgb, var(--brand-primary-hover, #de7571) 50%, transparent);
+  }
+
+  .hover\:bg-brand-primary:hover {
+    background-color: var(--brand-primary, #ff4e44);
+  }
+
+  .hover\:bg-brand-hover:hover {
+    background-color: var(--brand-primary-hover, #de7571);
+  }
+
+  .hover\:bg-brand-primary-10:hover {
+    background-color: color-mix(in srgb, var(--brand-primary, #ff4e44) 10%, transparent);
+  }
+
+  .hover\:bg-brand-primary-20:hover {
+    background-color: color-mix(in srgb, var(--brand-primary, #ff4e44) 20%, transparent);
+  }
+
+  .hover\:bg-brand-hover-20:hover {
+    background-color: color-mix(in srgb, var(--brand-primary-hover, #de7571) 20%, transparent);
+  }
+
+  .hover\:bg-brand-hover-30:hover {
+    background-color: color-mix(in srgb, var(--brand-primary-hover, #de7571) 30%, transparent);
+  }
+
+  .hover\:text-brand-primary:hover {
+    color: var(--brand-primary, #ff4e44);
+  }
+
+  .hover\:text-brand-hover:hover {
+    color: var(--brand-primary-hover, #de7571);
+  }
+
+  .hover\:border-brand-primary-40:hover {
+    border-color: color-mix(in srgb, var(--brand-primary, #ff4e44) 40%, transparent);
+  }
+
+  .hover\:border-brand-hover-40:hover {
+    border-color: color-mix(in srgb, var(--brand-primary-hover, #de7571) 40%, transparent);
+  }
+
+  .hover\:border-brand-hover-50:hover {
+    border-color: color-mix(in srgb, var(--brand-primary-hover, #de7571) 50%, transparent);
+  }
+
+  .animate-loading-bar {
+    animation: loading-bar 1.1s ease-in-out infinite;
+  }
+
+  @keyframes loading-bar {
+    0% {
+      transform: translateX(-100%) scaleX(0.35);
+    }
+    50% {
+      transform: translateX(0%) scaleX(0.85);
+    }
+    100% {
+      transform: translateX(100%) scaleX(0.35);
+    }
+  }
+
+  @keyframes marketing-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .marketing-float {
+    animation: marketing-float 5s ease-in-out infinite;
+  }
+
+  .marketing-float-delay {
+    animation: marketing-float 5s ease-in-out 1.2s infinite;
+  }
+
+  .marketing-page {
+    --brand-primary: #ff4e44;
+    --brand-primary-hover: #de7571;
+    --brand-accent: #bd928b;
+  }
+}
+
+/* Plano — asa de redimensionar (fuera de @layer para ganar a gridstack.min.css) */
+.building-floor-plan-canvas.gs-edit-mode .grid-stack-item {
+  overflow: visible !important;
+}
+
+.building-floor-plan-canvas.gs-edit-mode .grid-stack-item-content.gs-dash-card {
+  overflow: visible;
+  pointer-events: none;
+}
+
+.building-floor-plan-canvas.gs-edit-mode .grid-stack-item-content.gs-dash-card > * {
+  pointer-events: auto;
+}
+
+.building-floor-plan-canvas.gs-edit-mode .grid-stack-item > .ui-resizable-handle {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 30 !important;
+  pointer-events: auto !important;
+}
+
+.building-floor-plan-canvas.gs-edit-mode .grid-stack-item.ui-resizable-disabled > .ui-resizable-handle,
+.building-floor-plan-canvas.gs-edit-mode .grid-stack-item.ui-resizable-autohide > .ui-resizable-handle {
+  display: block !important;
+}
+
+.building-floor-plan-canvas.gs-edit-mode .grid-stack-item > .ui-resizable-se {
+  width: 30px !important;
+  height: 30px !important;
+  right: 6px !important;
+  bottom: 6px !important;
+  border-radius: 9999px !important;
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' viewBox='0 0 24 24'%3E%3Cpath d='m14 10 7 7'/%3E%3Cpath d='M21 14v7h-7'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 14px 14px !important;
+  border: 2px solid rgba(0, 0, 0, 0.12) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  transform: none !important;
+  cursor: se-resize !important;
+}
+
+.building-floor-plan-canvas.gs-edit-mode .grid-stack-item > .ui-resizable-se:hover {
+  background-color: #ffffff !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.38) !important;
+}

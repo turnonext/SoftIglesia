@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Modules\Auth\Models;
+
+use App\Modules\Shared\Traits\HasUlid;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class PasswordReset extends Model
+{
+    use HasUlid;
+
+    protected $fillable = [
+        'user_id',
+        'token_hash',
+        'expires_at',
+        'used_at',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'expires_at' => 'datetime',
+            'used_at' => 'datetime',
+        ];
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+}

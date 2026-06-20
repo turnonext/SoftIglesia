@@ -1,0 +1,65 @@
+# --- Secretos y entorno local (nunca subir) ---
+.env
+.env.local
+.env.*.local
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+frontend/.env.local
+frontend/.env*.local
+!frontend/.env.example
+
+# Claves / credenciales
+*.pem
+*.key
+auth.json
+**/storage/*.key
+
+# --- Dependencias ---
+node_modules/
+backend/vendor/
+frontend/node_modules/
+
+# --- Builds y caché ---
+frontend/.next/
+frontend/out/
+frontend/.turbo/
+backend/bootstrap/cache/*
+!backend/bootstrap/cache/.gitignore
+.phpunit.result.cache
+.phpunit.cache
+
+# --- Logs y datos locales ---
+*.log
+backend/storage/logs/*
+!backend/storage/logs/.gitignore
+backend/storage/framework/cache/data/*
+!backend/storage/framework/cache/data/.gitignore
+backend/storage/framework/sessions/*
+!backend/storage/framework/sessions/.gitignore
+backend/storage/framework/views/*
+!backend/storage/framework/views/.gitignore
+backend/database/*.sqlite*
+backend/database/*.sqlite-journal
+
+# --- IDE / SO ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.fleet/
+.zed/
+*.swp
+*.swo
+*~
+
+# --- Docker / volúmenes locales (si existen) ---
+infra/data/
+.docker/
+
+# --- Misc ---
+coverage/
+.nyc_output/
+dist/
+build/

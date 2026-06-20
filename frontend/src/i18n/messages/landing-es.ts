@@ -1,0 +1,285 @@
+export const landingEs = {
+  landing: {
+  topBar: {
+    tagline: "Campus virtual multi-cliente para instituciones y emprendedores que escalan",
+    follow: "Síguenos:",
+    email: "hola@lms-educore.com",
+    phone: "+54 11 4000-0000",
+    hours: "Lun–Vie 9:00–18:00 (ART)",
+  },
+  scrollToTop: "Volver arriba",
+  nav: {
+    home: "Inicio",
+    access: "Acceso",
+    features: "Funcionalidades",
+    howItWorks: "Cómo funciona",
+    about: "Nosotros",
+    pricing: "Precios",
+    clients: "Clientes",
+    faq: "FAQ",
+    contact: "Contacto",
+    login: "Iniciar sesión",
+    signup: "Crear cuenta",
+  },
+  hero: {
+    badge: "Plataforma LMS enterprise",
+    title: "Digitaliza la gestión académica con un campus virtual todo en uno",
+    subtitle:
+      "Cursos, clases en vivo con Zoom y Meet, asistencia, certificados PDF, archivos en la nube y analytics en tiempo real. Multi-cliente, con branding por cliente y roles para admin, instructor y estudiante.",
+    ctaPrimary: "Acceder al campus",
+    ctaSecondary: "Crear cuenta gratis",
+    imageAlt: "Ilustración de instructores y panel de métricas del campus virtual",
+    cardStatsTitle: "Progreso del campus",
+    cardStatsLabel: "Inscripciones activas",
+    cardStatsValue: "1.248",
+    cardStatsTrend: "+18% este mes",
+    cardLiveTitle: "Clase en vivo",
+    cardLiveLabel: "Zoom · Google Meet integrados",
+    cardLiveProgress: "Curso «Introducción a datos» publicado al 82%",
+  },
+  registerHero: {
+    badge: "Alta gratuita en el campus demo",
+    title: "Únete a tu campus virtual en minutos",
+    subtitle:
+      "Registrate como estudiante, accedé a cursos y clases en vivo, certificados y tu progreso académico. Usá el cliente «demo» para explorar sin compromiso.",
+    ctaPrimary: "Crear mi cuenta",
+    ctaSecondary: "Ya tengo cuenta",
+    imageAlt: "Ilustración de estudiantes registrándose en el campus virtual",
+  },
+  stats: {
+    institutions: { value: "120+", label: "Instituciones y emprendedores activos" },
+    users: { value: "45k+", label: "Usuarios en la plataforma" },
+    courses: { value: "8.500+", label: "Cursos gestionados" },
+    uptime: { value: "99.9%", label: "Disponibilidad SLA" },
+  },
+  features: {
+    title: "Todo lo que tu institución o emprendimiento necesita",
+    subtitle:
+      "Desde el wizard de creación de cursos hasta certificados, auditoría y plantillas de correo, sin salir del campus.",
+    imageAlt: "Vista previa del panel de administración LMS EduCore",
+    items: {
+      multiTenant: {
+        title: "Multi-cliente y branding",
+        desc: "Cada cliente con su subdominio lógico, colores, nombre y datos aislados. Ideal para grupos educativos.",
+      },
+      courses: {
+        title: "Cursos, materias y clases",
+        desc: "Wizard guiado, horarios, días de cursada, generación de sesiones y publicación con un clic.",
+      },
+      live: {
+        title: "Clases en vivo",
+        desc: "Enlaces automáticos de Zoom o Google Meet por sesión. Los estudiantes entran desde su curso.",
+      },
+      certs: {
+        title: "Certificados",
+        desc: "Plantillas HTML personalizables, firmas, variables dinámicas y descarga en PDF.",
+      },
+      analytics: {
+        title: "Analytics y KPIs",
+        desc: "Dashboard con usuarios, cursos publicados, inscripciones y métricas por rol.",
+      },
+      security: {
+        title: "Seguridad y auditoría",
+        desc: "JWT con refresh rotativo, roles granulares, logs de acceso y acciones administrativas.",
+      },
+      files: {
+        title: "Archivos y materiales",
+        desc: "Subida a almacenamiento S3/MinIO con URLs firmadas y permisos por curso.",
+      },
+      email: {
+        title: "Notificaciones",
+        desc: "Plantillas de correo editables, cola con RabbitMQ y tema visual por cliente.",
+      },
+    },
+  },
+  howItWorks: {
+    title: "Cómo funciona",
+    subtitle: "En tres pasos tu institución o emprendimiento opera con estándares enterprise.",
+    step1: {
+      title: "Crea tu cliente",
+      desc: "Registrate, configurá el cliente y personalizá colores y nombre del campus.",
+    },
+    step2: {
+      title: "Publica cursos y clases",
+      desc: "Usá el wizard, asigná instructores e integrá videollamadas automáticas.",
+    },
+    step3: {
+      title: "Mide y certifica",
+      desc: "Seguí asistencia, KPIs en el dashboard y emití certificados al finalizar.",
+    },
+  },
+  about: {
+    title: "Qué hacemos",
+    subtitle:
+      "Ayudamos a academias, universidades, emprendedores y áreas de capacitación corporativa a operar su aprendizaje online con la solidez de un SaaS financiero.",
+    p1: "LMS EduCore unifica lo que antes estaba disperso: hojas de cálculo, links sueltos de Meet, carpetas compartidas y correos manuales. Un solo campus donde administradores, instructores y estudiantes saben qué hacer en cada momento.",
+    p2: "Nuestra arquitectura event-driven (RabbitMQ), API REST versionada y frontend Next.js permiten escalar sin reescribir procesos. Cada cliente es independiente; el equipo de plataforma supervisa el ecosistema completo.",
+    p3: "Ofrecemos demo con cliente «demo», cuentas de prueba y documentación de ayuda integrada en cada módulo del panel.",
+    imageAlt: "Ilustración de analíticas y gestión académica en el campus",
+    pillars: {
+      mission: {
+        title: "Misión",
+        desc: "Democratizar herramientas LMS enterprise para instituciones y emprendedores de cualquier tamaño en Latinoamérica.",
+      },
+      vision: {
+        title: "Visión",
+        desc: "Ser el campus virtual de referencia cuando la formación online debe ser medible, segura y escalable.",
+      },
+      values: {
+        title: "Valores",
+        desc: "Seguridad de datos, transparencia en precios y experiencia clara para cada rol del equipo académico.",
+      },
+    },
+  },
+  pricing: {
+    title: "Planes transparentes",
+    subtitle: "Elegí según usuarios e integraciones. Podés empezar gratis y migrar sin perder datos.",
+    monthly: "mes",
+    yearlyNote: "Facturación mensual · descuento anual disponible",
+    cta: "Comenzar",
+    contact: "Contactar ventas",
+    starter: {
+      name: "Starter",
+      price: "0",
+      desc: "Para equipos que quieren probar el campus completo.",
+      f1: "Hasta 50 usuarios",
+      f2: "Cursos, clases y asistencia",
+      f3: "Dashboard básico",
+      f4: "Soporte por email",
+    },
+    pro: {
+      name: "Professional",
+      price: "89",
+      desc: "Instituciones y emprendedores en crecimiento con videollamadas y certificados.",
+      f1: "Usuarios ilimitados",
+      f2: "Zoom y Google Meet",
+      f3: "Certificados y plantillas de email",
+      f4: "Analytics avanzado y branding",
+      f5: "Soporte prioritario",
+      badge: "Más popular",
+    },
+    enterprise: {
+      name: "Enterprise",
+      price: "A medida",
+      desc: "Multi-campus, SLA dedicado y personalización.",
+      f1: "Cliente dedicado o on-premise",
+      f2: "SSO, SCIM y auditoría extendida",
+      f3: "Onboarding y capacitación incluidos",
+      f4: "Account manager",
+    },
+  },
+  clients: {
+    title: "Instituciones y emprendedores que nos eligen",
+    subtitle:
+      "Universidades, institutos técnicos, academias corporativas y emprendedores que centralizaron su operación académica.",
+    logos: {
+      horizonte: { name: "Instituto Horizonte", sector: "Educación superior", initials: "IH" },
+      digitalPlus: { name: "Academia Digital Plus", sector: "Capacitación IT", initials: "DP" },
+      campusNorte: { name: "Campus Norte", sector: "Red de colegios", initials: "CN" },
+      eduCorp: { name: "EduCorp LATAM", sector: "Corporate L&D", initials: "EC" },
+      learnHub: { name: "LearnHub", sector: "Bootcamps", initials: "LH" },
+      skillPro: { name: "SkillPro", sector: "Certificaciones", initials: "SP" },
+    },
+    t1: {
+      quote:
+        "Pasamos de cinco herramientas a un solo panel. Los instructores publican cursos en minutos y los alumnos tienen todo en un enlace.",
+      author: "María González",
+      role: "Directora académica, Instituto Horizonte",
+      avatarAlt: "Foto de María González",
+    },
+    t2: {
+      quote:
+        "La integración con Meet y el registro de asistencia nos ahorró más de diez horas por semana. El dashboard es lo primero que miramos cada mañana.",
+      author: "Carlos Rodríguez",
+      role: "CTO, Academia Digital Plus",
+      avatarAlt: "Foto de Carlos Rodríguez",
+    },
+    t3: {
+      quote:
+        "Multi-cliente nos permitió dar un campus branded a cada franquicia sin duplicar infraestructura.",
+      author: "Ana Martínez",
+      role: "COO, Campus Norte",
+      avatarAlt: "Foto de Ana Martínez",
+    },
+  },
+  faq: {
+    title: "Preguntas frecuentes",
+    subtitle: "Respuestas rápidas antes de crear tu cuenta.",
+    q1: {
+      q: "¿Necesito instalar algo?",
+      a: "No. LMS EduCore es 100% web. Instructores y estudiantes solo necesitan navegador y sus credenciales.",
+    },
+    q2: {
+      q: "¿Puedo usar mi propio dominio?",
+      a: "En planes Professional y Enterprise podés configurar branding y, en Enterprise, dominio personalizado.",
+    },
+    q3: {
+      q: "¿Cómo funcionan las cuentas demo?",
+      a: "Usá el cliente «demo» con admin@demo.com o student@demo.com y contraseña Password123! para explorar el panel.",
+    },
+    q4: {
+      q: "¿Integran Zoom y Google Meet?",
+      a: "Sí. El administrador configura las credenciales en Ajustes de reuniones y cada clase genera el enlace automáticamente.",
+    },
+    q5: {
+      q: "¿Los datos de cada institución o emprendimiento están aislados?",
+      a: "Sí. Arquitectura multi-cliente: cada cliente tiene usuarios, cursos y archivos separados.",
+    },
+    q6: {
+      q: "¿Hay límite de almacenamiento?",
+      a: "Starter incluye 5 GB. Professional 100 GB por cliente. Enterprise según contrato.",
+    },
+  },
+  supportCta: {
+    title: "¿Necesitás ayuda con el campus?",
+    subtitle:
+      "Nuestro equipo de soporte responde consultas técnicas, de acceso y uso de la plataforma.",
+    button: "Contactar con soporte",
+  },
+  contact: {
+    title: "Hablemos de tu campus",
+    subtitle:
+      "Completá el formulario o escribinos directo. Respondemos en menos de 24 horas hábiles.",
+    name: "Nombre completo",
+    namePlaceholder: "Ej. Laura Pérez",
+    email: "Correo electrónico",
+    emailPlaceholder: "tu@institucion.edu",
+    phone: "Teléfono (opcional)",
+    phonePlaceholder: "+54 9 11 …",
+    org: "Institución, empresa o emprendimiento",
+    orgPlaceholder: "Nombre de tu cliente",
+    subject: "Motivo de consulta",
+    subjectPlaceholder: "Demo, precios, soporte técnico…",
+    message: "Mensaje",
+    messagePlaceholder: "Contanos cuántos usuarios tenés y qué módulos te interesan…",
+    send: "Enviar mensaje",
+    sending: "Enviando…",
+    sent: "¡Gracias! Recibimos tu mensaje y te contactaremos pronto.",
+    privacyNote: "Al enviar aceptás que usemos tus datos solo para responder esta consulta.",
+    infoTitle: "Datos de contacto",
+    emailLabel: "Email comercial",
+    emailValue: "hola@lms-educore.com",
+    salesLabel: "Ventas",
+    salesEmail: "ventas@lms-educore.com",
+    phoneLabel: "Teléfono",
+    phoneValue: "+54 11 4000-0000",
+    whatsapp: "WhatsApp +54 9 11 5000-0000",
+    addressLabel: "Oficina",
+    addressValue: "Av. Corrientes 1234, CABA, Buenos Aires, Argentina",
+    hoursLabel: "Horario de atención",
+    hoursValue: "Lunes a viernes, 9:00 a 18:00 (hora Argentina)",
+  },
+  footer: {
+    tagline: "Campus virtual multi-cliente para educación y capacitación.",
+    rights: "© {year} LMS EduCore. Todos los derechos reservados.",
+    product: "Producto",
+    company: "Empresa",
+    legal: "Legal",
+    privacy: "Política de privacidad",
+    terms: "Términos de servicio",
+    cookies: "Cookies",
+    help: "Centro de ayuda",
+    demo: "Probar demo",
+  },
+  },
+} as const;
