@@ -56,7 +56,7 @@ function ResetPasswordForm() {
     } catch (err) {
       const msg = getApiErrorMessage(err, t("auth.reset.error"));
       setError(msg);
-      notifyError(err);
+      notifyError(msg);
     } finally {
       setLoading(false);
     }
