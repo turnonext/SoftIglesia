@@ -18,7 +18,6 @@ import {
   computeCalendarStats,
   dayKey,
   formatSessionTime,
-  getUpcomingSessions,
   groupByDay,
   getUpcomingSessions,
   startOfMonth,
