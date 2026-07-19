@@ -12,12 +12,27 @@ return new class extends Migration
             return;
         }
 
-        Schema::table('church_seat_event_seats', function (Blueprint $table) {
-            $table->dropUnique('cses_event_label_uq');
-            $table->unique(
-                ['church_seat_event_sector_id', 'label'],
-                'cses_sector_label_uq'
-            );
+        $indexNames = collect(Schema::getIndexes('church_seat_event_seats'))
+            ->pluck('name')
+            ->all();
+
+        // Fresh installs already have cses_sector_label_uq from the create migration.
+        if (! in_array('cses_event_label_uq', $indexNames, true)
+            && in_array('cses_sector_label_uq', $indexNames, true)) {
+            return;
+        }
+
+        Schema::table('church_seat_event_seats', function (Blueprint $table) use ($indexNames) {
+            if (in_array('cses_event_label_uq', $indexNames, true)) {
+                $table->dropUnique('cses_event_label_uq');
+            }
+
+            if (! in_array('cses_sector_label_uq', $indexNames, true)) {
+                $table->unique(
+                    ['church_seat_event_sector_id', 'label'],
+                    'cses_sector_label_uq'
+                );
+            }
         });
     }
 
@@ -27,9 +42,18 @@ return new class extends Migration
             return;
         }
 
-        Schema::table('church_seat_event_seats', function (Blueprint $table) {
-            $table->dropUnique('cses_sector_label_uq');
-            $table->unique(['church_seat_event_id', 'label'], 'cses_event_label_uq');
+        $indexNames = collect(Schema::getIndexes('church_seat_event_seats'))
+            ->pluck('name')
+            ->all();
+
+        Schema::table('church_seat_event_seats', function (Blueprint $table) use ($indexNames) {
+            if (in_array('cses_sector_label_uq', $indexNames, true)) {
+                $table->dropUnique('cses_sector_label_uq');
+            }
+
+            if (! in_array('cses_event_label_uq', $indexNames, true)) {
+                $table->unique(['church_seat_event_id', 'label'], 'cses_event_label_uq');
+            }
         });
     }
 };
