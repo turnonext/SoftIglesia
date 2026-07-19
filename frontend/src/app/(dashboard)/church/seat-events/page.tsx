@@ -117,7 +117,7 @@ export default function ChurchSeatEventsPage() {
       setForm(emptySeatEventForm());
       if (res.data?.id) setSelectedId(res.data.id);
     },
-    onError: notifyApiError,
+    onError: (error) => notifyApiError(error),
   });
 
   const regenerateMutation = useMutation({
