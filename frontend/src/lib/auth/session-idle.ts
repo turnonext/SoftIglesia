@@ -1,5 +1,5 @@
 /** Tiempo máximo sin interacción del usuario antes de cerrar sesión (30 min). */
-export const SESSION_IDLE_MS = 1 * 60 * 1000;
+export const SESSION_IDLE_MS = 60 * 60 * 1000;
 
 /** Aviso toast en los últimos N ms antes del cierre. */
 export const SESSION_IDLE_WARNING_MS = 20 * 1000;
