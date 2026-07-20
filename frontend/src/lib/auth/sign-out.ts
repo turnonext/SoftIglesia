@@ -2,6 +2,7 @@ import axios from "axios";
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { getAccessToken, getRefreshToken, getTenantSlug } from "@/lib/api/auth-headers";
 import {
+  beginIdleRedirect,
   clearSessionIdleState,
   setSessionIdleExpired,
 } from "@/lib/auth/session-idle";
@@ -18,7 +19,11 @@ type SignOutOptions = {
 
 /** Cierra sesión localmente y revoca tokens en el servidor cuando es posible. */
 export async function signOut(options: SignOutOptions = {}): Promise<void> {
-  setSessionIdleExpired(true);
+  if (options.reason === "idle") {
+    if (!beginIdleRedirect()) return;
+  } else {
+    setSessionIdleExpired(true);
+  }
 
   const refresh = getRefreshToken();
   const access = getAccessToken();

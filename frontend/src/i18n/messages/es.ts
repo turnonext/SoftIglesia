@@ -155,7 +155,7 @@ export const es = {
       welcome: "Sesión iniciada",
     },
     session: {
-      idle: "Sesión cerrada por inactividad (5 minutos). Volvé a iniciar sesión.",
+      idle: "Sesión cerrada por inactividad (30 minutos). Volvé a iniciar sesión.",
       idleCountdown:
         "Cerrando sesión por inactividad en {n} s. Mové el mouse o pulsá una tecla para continuar.",
     },

@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  beginIdleRedirect,
   isSessionIdleExpired,
   isSessionIdleExpiredFlag,
 } from "@/lib/auth/session-idle";
@@ -50,7 +51,10 @@ api.interceptors.response.use(
       if (isSessionIdleExpiredFlag() || isSessionIdleExpired()) {
         useAuthStore.getState().clearSession();
         if (typeof window !== "undefined") {
-          window.location.href = "/login?idle=1";
+          const onLogin = window.location.pathname.startsWith("/login");
+          if (!onLogin && beginIdleRedirect()) {
+            window.location.href = "/login?idle=1";
+          }
         }
         return Promise.reject(error);
       }
