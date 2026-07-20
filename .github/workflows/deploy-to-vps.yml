@@ -1,0 +1,47 @@
+name: Deploy to VPS
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run deploy script on VPS over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script_stop: true
+          script: |
+            set -e
+
+            echo "Verificando proyecto..."
+            if [ ! -d "${{ secrets.VPS_PROJECT_PATH }}" ]; then
+              echo "Clonando repo..."
+              git clone git@github.com:turnonext/SoftIglesia.git "${{ secrets.VPS_PROJECT_PATH }}"
+            fi
+
+            cd "${{ secrets.VPS_PROJECT_PATH }}"
+
+            echo "Actualizando código..."
+            git fetch origin
+            git reset --hard origin/main
+
+            echo "Ejecutando deploy..."
+            chmod +x scripts/deploy-prod.sh
+            DEPLOY_BRANCH=main \
+            BACKEND_DIR=backend \
+            FRONTEND_DIR=frontend \
+            RUN_MIGRATIONS=true \
+            PHP_FPM_SERVICE="${{ secrets.PHP_FPM_SERVICE }}" \
+            FRONTEND_SERVICE="${{ secrets.FRONTEND_SERVICE }}" \
+            bash scripts/deploy-prod.sh
