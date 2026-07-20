@@ -1,4 +1,4 @@
-/** Tiempo máximo sin interacción del usuario antes de cerrar sesión. */
+/** Tiempo máximo sin interacción del usuario antes de cerrar sesión (30 min). */
 export const SESSION_IDLE_MS = 60 * 60 * 1000;
 
 /** Aviso toast en los últimos N ms antes del cierre. */
@@ -11,11 +11,14 @@ export function getRemainingIdleMs(): number {
 export const SESSION_LAST_ACTIVITY_KEY = "lms_last_activity_at";
 
 let idleExpired = false;
+/** Evita doble redirect / doble toast al cerrar por idle. */
+let idleRedirectStarted = false;
 
 export function markSessionActivity(): void {
   if (typeof window === "undefined") return;
   localStorage.setItem(SESSION_LAST_ACTIVITY_KEY, String(Date.now()));
   idleExpired = false;
+  idleRedirectStarted = false;
 }
 
 export function clearSessionIdleState(): void {
@@ -43,4 +46,15 @@ export function setSessionIdleExpired(value: boolean): void {
 
 export function isSessionIdleExpiredFlag(): boolean {
   return idleExpired;
+}
+
+/**
+ * Marca que ya se inició el redirect por idle.
+ * @returns false si otro flujo ya lo inició.
+ */
+export function beginIdleRedirect(): boolean {
+  if (idleRedirectStarted) return false;
+  idleRedirectStarted = true;
+  idleExpired = true;
+  return true;
 }

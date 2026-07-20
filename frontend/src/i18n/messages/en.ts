@@ -156,7 +156,7 @@ export const en: Messages = {
       welcome: "Signed in successfully",
     },
     session: {
-      idle: "Session ended due to inactivity (5 minutes). Please sign in again.",
+      idle: "Session ended due to inactivity (30 minutes). Please sign in again.",
       idleCountdown:
         "Closing session due to inactivity in {n}s. Move the mouse or press a key to stay signed in.",
     },
